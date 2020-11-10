@@ -29,6 +29,8 @@ class Main extends React.Component {
     }
 
     this.add = (document) => {
+      console.log(document)
+
       this.store.addDocument(document)
     }
 
@@ -70,6 +72,7 @@ class Main extends React.Component {
                     success={(files) => this.dropboxSuccess(files)}
                     cancel={() => this.dropboxCancel()}
                     multiselect={true}
+                    linkType="preview"
                     extensions={[".pdf"]}
                     ><div className="btn btn-info"><i className="fab fa-dropbox"></i> Dropbox</div>
                   </DropboxChooser>

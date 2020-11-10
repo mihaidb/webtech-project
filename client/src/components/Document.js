@@ -22,7 +22,7 @@ class Document extends React.Component {
                 <td>{item.type}</td>
                 <td>{item.series}</td>
                 <td>{item.documentDate}</td>
-                <td><a class="btn btn-info" title="Edit"><i class="fas fa-pencil-alt"></i></a> <a class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i></a> </td>
+                <td><a className="btn btn-info" title="Edit"><i className="fas fa-pencil-alt"></i></a> <a className="btn btn-danger" title="Delete"><i className="fas fa-trash-alt"></i></a> </td>
             </tr>
         )
     }

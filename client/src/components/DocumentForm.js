@@ -10,9 +10,9 @@ class DocumentForm extends React.Component {
 
     this.state = {
       company: "",
-      type: "",
+      type: "invoice",
       series: "",
-      documentDate: "",
+      documentDate:"",
     };
 
     this.hideForm = () => {
@@ -30,21 +30,13 @@ class DocumentForm extends React.Component {
         company: this.state.company,
         type: this.state.type,
         series: this.state.series,
-        documentDate: this.state.documentDate,
+        documentDate: this.documentDate,
       });
     };
     
     this.dateChange=(e)=>{
    
-      this.setState({
-        documentDate:format(e,'yyyy-mm-dd')
-      })
-    }
-
-    this.dateSelect=(e)=>{
-      this.setState({
-        documentDate:format(e,'yyyy-mm-dd')
-      })
+      this.documentDate=format(e,'yyyy-mm-dd')
     }
   }
 
@@ -92,7 +84,7 @@ class DocumentForm extends React.Component {
               <Form.Group>
                 <Form.Label>Document date</Form.Label>
                 <DatePicker onChange={this} name="documentDate" value={new Date} />
-                <DatePicker dateFormat="yyyy-mm-dd" onChange={this.dateChange} onSelect={this.dateSelect} name="documentDate" value={new Date} />
+                <DatePicker dateFormat="yyyy-mm-dd" onChange={this.dateChange} name="documentDate" value={new Date} />
               </Form.Group>
 
               <Form.Row>
