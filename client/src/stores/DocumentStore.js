@@ -26,5 +26,16 @@ class DocumentStore{
             this.emitter.emit('ADD_DOCUMENT_ERR')
         }
     }
+
+
+async deleteDocument(id){
+    try {
+        await axios.delete(`${SERVER}/documents/${id}`)
+        this.getDocuments()
+    } catch (error) {
+        this.emitter.emit('DELETE_DOCUMENT_ERR')
+        }
+    }
+
 }
-export default DocumentStore
+export default DocumentStore;

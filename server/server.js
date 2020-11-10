@@ -120,7 +120,7 @@ app.post("/documents", async (req, res) => {
 
 app.put("/documents/:id", async (req, res) => {
   try {
-    const document = await Document.findByPk(req.params.bid)
+    const document = await Document.findByPk(req.params.id)
     if (document) {
       document.company = req.body.company ? req.body.company : document.company
       document.content = req.body.content ? req.body.content : document.content
@@ -137,7 +137,7 @@ app.put("/documents/:id", async (req, res) => {
 
 app.delete("/documents/:id", async (req, res) => {
   try {
-    const document = await Document.findByPk(req.params.bid)
+    const document = await Document.findByPk(req.params.id)
     if (document) {
       await document.destroy()
       res.status(202).json({ message: "document deleted" })

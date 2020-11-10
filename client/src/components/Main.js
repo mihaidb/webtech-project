@@ -29,9 +29,12 @@ class Main extends React.Component {
     }
 
     this.add = (document) => {
-      console.log(document)
 
       this.store.addDocument(document)
+    }
+
+    this.delete = (id) => {
+      this.store.deleteDocument(id)
     }
 
     this.dropboxSuccess = (files) => {
@@ -97,7 +100,7 @@ class Main extends React.Component {
                   </thead>
                   <tbody>
                     {
-                      this.state.documents.map(e => <Document key={e.id} item={e} />)
+                      this.state.documents.map(e => <Document key={e.id} item={e} onDelete={this.delete}  />)
                     }
                   </tbody>
                 </Table>
