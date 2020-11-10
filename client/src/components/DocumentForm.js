@@ -33,7 +33,22 @@ class DocumentForm extends React.Component {
         documentDate: this.state.documentDate,
       });
     };
+    
+    this.dateChange=(e)=>{
+   
+      this.setState({
+        documentDate:format(e,'yyyy-mm-dd')
+      })
+    }
+
+    this.dateSelect=(e)=>{
+      this.setState({
+        documentDate:format(e,'yyyy-mm-dd')
+      })
+    }
   }
+
+  
 
   render() {
     return (
@@ -76,7 +91,8 @@ class DocumentForm extends React.Component {
 
               <Form.Group>
                 <Form.Label>Document date</Form.Label>
-                <DatePicker onChange={this.handleChange} name="documentDate" value={new Date} />
+                <DatePicker onChange={this} name="documentDate" value={new Date} />
+                <DatePicker dateFormat="yyyy-mm-dd" onChange={this.dateChange} onSelect={this.dateSelect} name="documentDate" value={new Date} />
               </Form.Group>
 
               <Form.Row>

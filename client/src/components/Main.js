@@ -28,8 +28,16 @@ class Main extends React.Component {
       })
     }
 
-    this.add=(document)=>{
+    this.add = (document) => {
       this.store.addDocument(document)
+    }
+
+    this.dropboxSuccess = (files) => {
+      console.log(files)
+    }
+
+    this.dropboxCancel = () => {
+      console.log('cancel')
     }
   }
 
@@ -54,17 +62,16 @@ class Main extends React.Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" onClick={this.showForm}><i class="fas fa-plus"></i> Add Document</a>
+                  <a className="nav-link" onClick={this.showForm}><i className="fas fa-plus"></i> Add Document</a>
                 </li>
                 <li className="nav-item">
                   <DropboxChooser
                     appKey={"0c6o77qominpwx3"}
-                    success={(files) => this.onSuccess(files)}
-                    cancel={() => this.onCancel()}
+                    success={(files) => this.dropboxSuccess(files)}
+                    cancel={() => this.dropboxCancel()}
                     multiselect={true}
                     extensions={[".pdf"]}
-                  >
-                    <div className="dropbox-button" title="Choose document from DropBox"><i class="fab fa-dropbox"></i> Dropbox</div>
+                    ><div className="btn btn-info"><i className="fab fa-dropbox"></i> Dropbox</div>
                   </DropboxChooser>
                 </li>
               </ul>
