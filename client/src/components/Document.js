@@ -24,6 +24,8 @@ class Document extends React.Component {
         isEditing: true,
       });
     };
+    
+
 
     this.editSave = (document) => {
       this.store = new DocumentStore();
@@ -56,6 +58,7 @@ class Document extends React.Component {
       );
     } else {
       return (
+          //we use tables instead of simple forms for better looking
         <tr>
           <td>{item.id}</td>
           <td>{item.company}</td>

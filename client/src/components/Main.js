@@ -5,10 +5,12 @@ import DocumentStore from "../stores/DocumentStore";
 import Document from "./Document";
 import DocumentForm from "./DocumentForm";
 
+//Bootstrap e doar pentu UX/UI, sa arate frumos, Google, spre exemplu foloseste Material Design
+//Dropbox Chooser - pt integrarea in dropbox
 class Main extends React.Component {
   constructor() {
     super();
-
+//document lifecycle
     this.state = {
       documents: [],
       isEditing: false,
@@ -90,12 +92,13 @@ class Main extends React.Component {
                 </li>
                 <li className="nav-item">
                   <DropboxChooser
-                    appKey={"4chypodz0vnq8m4"}
+                    appKey={"4chypodz0vnq8m4"} //- cheia aplicatiei facute din Dropbox, in contul aferent am pus cateva PDF-uri, docx-uri, etc.
+                    //din consola aplicatiei din Dropbox, am acordat permisiune de acces pentru localhost, sa putem face modificari
                     success={(files) => this.dropboxSuccess(files)}
                     cancel={() => this.dropboxCancel()}
                     multiselect={true}
                     linkType="preview"
-                    extensions={[".pdf"]}
+                    extensions={[".pdf", ".docx"]}
                   >
                     <div className="btn btn-info">
                       <i className="fab fa-dropbox"></i> Dropbox

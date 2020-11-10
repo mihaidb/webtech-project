@@ -16,9 +16,10 @@ const Document = sequelize.define(
     type: Sequelize.ENUM("invoice", "contract", "other"),
     series: Sequelize.STRING(24),
     documentDate: Sequelize.DATEONLY,
+    url:Sequelize.STRING(255)
   },
-    //indecsii dupa care caut documentele
-
+  
+  //indecsii dupa care caut documentele
   {
     indexes: [
       {
@@ -41,10 +42,6 @@ app.use((req, res, next) => {
 app.use(cors())
 app.use(bodyParser.json())
 
-///CRUD
-
-//GET
-
 app.get("/sync", async (req, res) => {
   try {
     await sequelize.sync()
@@ -54,36 +51,38 @@ app.get("/sync", async (req, res) => {
     res.status(500).json({ message: "Error" })
   }
 })
-//functie care sa populeze serverul la pornire --> tip GET
+
+//functie care sa populeze serverul la pornire --> tip POST
+
 app.get("/populate", async (req, res) => {
   try {
     const documents = [
       {
-        company: "IBM S.A.",
-        type: "contract",
-        series: "1",
-        documentDate: "2019-08-02",
-      },
-      {
-        company: "M$ S.A.",
-        type: "contract",
-        series: "2",
-        documentDate: "2019-12-02",
-      },
-      {
-        company: "Genius S.R.L. - Invoice",
+        company: "Oracle Corporation",
         type: "invoice",
         series: "FACT 001",
+        documentDate: "2019-01-02",
+      },
+      {
+        company: "Microsoft.",
+        type: "other",
+        series: "33",
+        documentDate: "2019-11-01",
+      },
+      {
+        company: "Salesforce.com, inc.",
+        type: "invoice",
+        series: "FACT 002",
         documentDate: "2020-05-02",
       },
       {
-        company: "Pano Plus S.R.L. - Invoice",
+        company: "eMAG S.R.L.",
         type: "invoice",
-        series: "FACT 002",
+        series: "FACT 003",
         documentDate: "2020-05-07",
       },
       {
-        company: "Ministerul Transporturilor",
+        company: "CERT RO",
         type: "other",
         series: "10013112",
         documentDate: "2020-08-02",
@@ -98,6 +97,10 @@ app.get("/populate", async (req, res) => {
   }
 })
 
+///CRUD
+
+//GET
+
 app.get("/documents", async (req, res) => {
   try {
     const documents = await Document.findAll({})
@@ -108,6 +111,7 @@ app.get("/documents", async (req, res) => {
   }
 })
 
+//POST
 app.post("/documents", async (req, res) => {
   try {
     await Document.create(req.body)
@@ -118,6 +122,7 @@ app.post("/documents", async (req, res) => {
   }
 })
 
+//PUT
 app.put("/documents/:id", async (req, res) => {
   try {
     const document = await Document.findByPk(req.params.id)
@@ -138,6 +143,7 @@ app.put("/documents/:id", async (req, res) => {
   }
 })
 
+//DELETE
 app.delete("/documents/:id", async (req, res) => {
   try {
     const document = await Document.findByPk(req.params.id)
