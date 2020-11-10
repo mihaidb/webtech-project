@@ -26,7 +26,6 @@ class DocumentForm extends React.Component {
     }
 
     this.add = () => {
-      console.log(this.state.documentDate)
       this.props.onAdd({
         company: this.state.company,
         type: this.state.type,
@@ -36,9 +35,7 @@ class DocumentForm extends React.Component {
     }
 
     this.dateChange = (e) => {
-      // this.setState({
-      //   documentDate:e
-      // })
+      
       this.documentDate = format(e, 'yyyy-mm-dd')
     }
 

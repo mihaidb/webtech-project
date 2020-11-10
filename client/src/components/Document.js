@@ -1,5 +1,6 @@
 import React from 'react'
 import DocumentForm from './DocumentForm'
+import DocumentStore from '../stores/DocumentStore'
 
 class Document extends React.Component {
     constructor(props) {
@@ -23,6 +24,15 @@ class Document extends React.Component {
             })
         }
 
+        this.editSave=(document)=>{
+            this.store = new DocumentStore()
+            this.store.putDocument(this.props.item.id,document)
+            this.props.store.getDocuments()
+            this.setState({
+                isEditing:false
+            })
+        }
+
         this.hideForm=()=>{
             this.setState({
                 isEditing:false
@@ -36,7 +46,7 @@ class Document extends React.Component {
         if (this.state.isEditing) {
             return (
                 <>
-                    <DocumentForm onAdd={this.add} onHideForm={this.hideForm} item={item} />
+                    <DocumentForm onAdd={this.editSave} onHideForm={this.hideForm} item={item} />
                 </>
             )
         } else {

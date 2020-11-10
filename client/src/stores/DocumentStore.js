@@ -21,6 +21,7 @@ class DocumentStore{
     async addDocument(document){
         try {
             await axios.post(`${SERVER}/documents`,document)
+            this.emitter.emit('ADD_DOCUMENT_SUCCESS')
             this.getDocuments()
         } catch (error) {
             this.emitter.emit('ADD_DOCUMENT_ERR')
@@ -37,5 +38,14 @@ async deleteDocument(id){
         }
     }
 
+    async putDocument(id,document){
+        try {
+            await axios.put(`${SERVER}/documents/${id}`,document)
+            this.emitter.emit('PUT_DOCUMENT_SUCCESS')
+            this.getDocuments()
+        } catch (error) {
+            this.emitter.emit('DELETE_DOCUMENT_ERR')
+        }
+    }
 }
 export default DocumentStore;
