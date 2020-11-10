@@ -39,7 +39,19 @@ class Main extends React.Component {
 
     this.dropboxSuccess = (files) => {
       console.log(files)
+      files.forEach((file)=>{
+        if(file.isDir==false){
+          this.store.addDocument({
+            company:file.name,
+            type:'other',
+            series:'',
+            documentDate:new Date(),
+            url:file.link
+          })
+        }
+      })
     }
+    
 
     this.dropboxCancel = () => {
       console.log('cancel')

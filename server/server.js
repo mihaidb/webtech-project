@@ -123,7 +123,10 @@ app.put("/documents/:id", async (req, res) => {
     const document = await Document.findByPk(req.params.id)
     if (document) {
       document.company = req.body.company ? req.body.company : document.company
-      document.content = req.body.content ? req.body.content : document.content
+      document.type = req.body.content ? req.body.content : document.type
+      document.series = req.body.series ? req.body.series : document.series
+      document.documentDate = req.body.documentDate ? req.body.documentDate : document.documentDate
+      document.url = req.body.url ? req.body.url : document.url
       await document.save()
       res.status(202).json({ message: "document saved" })
     } else {
