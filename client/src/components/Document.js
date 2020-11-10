@@ -57,6 +57,7 @@ class Document extends React.Component {
                     <td>{item.type}</td>
                     <td>{item.series}</td>
                     <td>{item.documentDate}</td>
+                    <td>{item.url ? <a href={item.url} target="_blank">download</a> : ''}</td>
                     <td><a className="btn btn-info" title="Edit"><i className="fas fa-pencil-alt" onClick={this.edit}></i></a> <a className="btn btn-danger" title="Delete" onClick={this.delete}><i className="fas fa-trash-alt"></i></a> </td>
                 </tr>
             )
