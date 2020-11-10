@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import DatePicker from "react-date-picker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 
 class DocumentForm extends React.Component {
@@ -9,21 +10,21 @@ class DocumentForm extends React.Component {
     super(props);
 
     this.state = {
-      company: this.props.item ? this.props.item.company : '',
+      company: this.props.item ? this.props.item.company : "",
       type: this.props.item ? this.props.item.type : "invoice",
-      series: this.props.item ? this.props.item.series : '',
-      documentDate: this.props.item ? this.props.item.documentDate : new Date()
-    }
+      series: this.props.item ? this.props.item.series : "",
+      documentDate: this.props.item ? this.props.item.documentDate : new Date(),
+    };
 
     this.hideForm = () => {
       this.props.onHideForm();
-    }
+    };
 
     this.handleChange = (evt) => {
       this.setState({
         [evt.target.name]: evt.target.value,
-      })
-    }
+      });
+    };
 
     this.add = () => {
       this.props.onAdd({
@@ -31,14 +32,16 @@ class DocumentForm extends React.Component {
         type: this.state.type,
         series: this.state.series,
         documentDate: this.documentDate,
-      })
-    }
+      });
+    };
 
     this.dateChange = (e) => {
-      
-      this.documentDate = format(e, 'yyyy-mm-dd')
-    }
-
+      // console.log(e);
+      this.setState({
+        documentDate:e
+      })
+      this.documentDate = format(e, "yyyy-MM-dd");
+    };
   }
 
   render() {
@@ -85,7 +88,18 @@ class DocumentForm extends React.Component {
 
               <Form.Group>
                 <Form.Label>Document date</Form.Label>
-                <DatePicker dateFormat="yyyy-mm-dd" onChange={this.dateChange} name="documentDate" value={this.state.documentDate} />
+                {/* <DatePicker
+                  // dateFormat="yyyy-mm-dd"
+                  // onChange={this.dateChange}
+                  // name="documentDate"
+                  // value={this.state.documentDate}
+                /> */}
+                <DatePicker
+                  selected={this.state.documentDate}
+                  onChange={this.dateChange}
+                  name="startDate"
+                  dateFormat="yyyy-MM-dd"
+                />
               </Form.Group>
 
               <Form.Row>

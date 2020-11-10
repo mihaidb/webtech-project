@@ -15,7 +15,7 @@ const Document = sequelize.define(
     company: Sequelize.STRING(255),
     type: Sequelize.ENUM("invoice", "contract", "other"),
     series: Sequelize.STRING(24),
-    documentDate: Sequelize.DATE,
+    documentDate: Sequelize.DATEONLY,
   },
     //indecsii dupa care caut documentele
 
