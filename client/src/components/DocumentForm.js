@@ -13,7 +13,7 @@ class DocumentForm extends React.Component {
       company: this.props.item ? this.props.item.company : "",
       type: this.props.item ? this.props.item.type : "invoice",
       series: this.props.item ? this.props.item.series : "",
-      documentDate: this.props.item ? this.props.item.documentDate : new Date(),
+      documentDate: this.props.item ? Date.parse(this.props.item.documentDate) : new Date(),
     };
 
     this.hideForm = () => {
