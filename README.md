@@ -3,3 +3,7 @@
 
 ##Comunicarea serverului cu baza de date se face printr-un serviciu de gazduire live
 --> se va rula comand npm i in folderele client, respectiv server inainte de rularea aplicatiei
+---> Server: nodemon server.js
+----> Client: npm start
+
+*Daca se doreste a se rula pe platforma Windows, comenzilor npm li se va adauga prefixul npx
