@@ -1,4 +1,5 @@
 import React from 'react'
+import DocumentForm from './DocumentForm'
 
 class Document extends React.Component {
     constructor(props) {
@@ -9,25 +10,46 @@ class Document extends React.Component {
             type: this.props.item.type,
             series: this.props.item.series,
             documentDate: this.props.item.documentDate,
+            isEditing: false
         }
 
-        this.delete=()=>{
+        this.delete = () => {
             this.props.onDelete(this.props.item.id)
+        }
+
+        this.edit = () => {
+            this.setState({
+                isEditing: true
+            })
+        }
+
+        this.hideForm=()=>{
+            this.setState({
+                isEditing:false
+            })
         }
     }
 
     render() {
         const { item } = this.props
 
-        return (
-            <tr>
-                <td>{item.id}</td>
-                <td>{item.company}</td>
-                <td>{item.type}</td>
-                <td>{item.series}</td>
-                <td>{item.documentDate}</td>
-                <td><a className="btn btn-info" title="Edit"><i className="fas fa-pencil-alt"></i></a> <a className="btn btn-danger" title="Delete" onClick={this.delete}><i className="fas fa-trash-alt"></i></a> </td>
-            </tr>
-        )
+        if (this.state.isEditing) {
+            return (
+                <>
+                    <DocumentForm onAdd={this.add} onHideForm={this.hideForm} item={item} />
+                </>
+            )
+        } else {
+            return (
+                <tr>
+                    <td>{item.id}</td>
+                    <td>{item.company}</td>
+                    <td>{item.type}</td>
+                    <td>{item.series}</td>
+                    <td>{item.documentDate}</td>
+                    <td><a className="btn btn-info" title="Edit"><i className="fas fa-pencil-alt" onClick={this.edit}></i></a> <a className="btn btn-danger" title="Delete" onClick={this.delete}><i className="fas fa-trash-alt"></i></a> </td>
+                </tr>
+            )
+        }
     }
 } export default Document
